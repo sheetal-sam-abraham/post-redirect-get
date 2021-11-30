@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+</head>
+<body>
+	<style>.error {color: red;}</style>
+	<form action="form" th:action="@{/form}" th:object="${formDTO}" onsubmit="return validateForm()" method="post">
+		<label for="inputText">Input text:</label>
+		<input type="text" id="inputText" name="inputText" placeholder="1 to 10 characters" maxlength = "10" pattern=".*\S{1}.*" required title="Input text must not be blank and can have a maximum of 10 characters" th:field="*{inputText}"/>
+		<p th:if="${#fields.hasErrors('inputText')}" th:class="${#fields.hasErrors('inputText')}? error" th:errors="*{inputText}"></p>
+		<p><input type="submit" value="Submit"></p>
+	</form>
+</body>
+</html>
